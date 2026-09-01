@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { UserProfile, AdRewardConfig, WithdrawalRequest, AdminStats } from '../src/types';
 import { getSupabase } from './supabase';
-import { getFirestoreDB } from './firebase';
+import { getFirestoreDB, disableFirestoreFallback } from './firebase';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const DB_FILE = path.join(DATA_DIR, 'db.json');
@@ -131,8 +131,10 @@ export async function getUser(userId: string): Promise<UserProfile | null> {
         db.users[userId] = data;
         return data;
       }
-    } catch (e) {
-      console.warn('Firestore getUser fallback:', e);
+    } catch (e: any) {
+      if (e?.code === 7 || e?.message?.includes('PERMISSION_DENIED')) {
+        disableFirestoreFallback();
+      }
     }
   }
 
@@ -230,8 +232,10 @@ export async function saveUser(user: UserProfile): Promise<void> {
   if (firestore) {
     try {
       await firestore.collection('users').doc(user.id).set(user, { merge: true });
-    } catch (e) {
-      console.warn('Firestore saveUser error:', e);
+    } catch (e: any) {
+      if (e?.code === 7 || e?.message?.includes('PERMISSION_DENIED')) {
+        disableFirestoreFallback();
+      }
     }
   }
 

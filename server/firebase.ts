@@ -4,13 +4,16 @@ import path from 'path';
 import fs from 'fs';
 
 let firestoreInstance: Firestore | null = null;
+let firestoreDisabled = false;
 
 export function getFirestoreDB(): Firestore | null {
+  if (firestoreDisabled) return null;
   if (firestoreInstance) return firestoreInstance;
 
   try {
     const configPath = path.join(process.cwd(), 'firebase-applet-config.json');
     if (!fs.existsSync(configPath)) {
+      firestoreDisabled = true;
       return null;
     }
     const configData = JSON.parse(fs.readFileSync(configPath, 'utf8'));
@@ -30,10 +33,15 @@ export function getFirestoreDB(): Firestore | null {
     } else {
       firestoreInstance = getFirestore(app);
     }
-    console.log('✅ Firebase Firestore connected successfully (Project:', configData.projectId, ', Database:', configData.firestoreDatabaseId || '(default)', ')');
     return firestoreInstance;
   } catch (err) {
-    console.warn('Firebase Firestore initialization notice (will use fallback local memory):', err);
+    firestoreDisabled = true;
     return null;
   }
 }
+
+export function disableFirestoreFallback() {
+  firestoreDisabled = true;
+  firestoreInstance = null;
+}
+
