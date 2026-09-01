@@ -1,0 +1,42 @@
+{
+  "users": {
+    "1979711369": {
+      "id": "1979711369",
+      "username": "paulallen",
+      "first_name": "Paul",
+      "last_name": "Allen",
+      "avatar_url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "balance": 0.0,
+      "total_earned": 0.0,
+      "ads_watched": 0,
+      "ads_watched_today": 0,
+      "last_ad_date": "2026-09-01",
+      "channel_unlocked": true,
+      "channel_approved": true,
+      "channel_joined": true,
+      "friends_invited": 0,
+      "earned_from_invites": 0,
+      "tasks_completed": {},
+      "created_at": "2026-09-01T00:00:00.000Z",
+      "is_admin": true
+    }
+  },
+  "withdrawals": [],
+  "config": {
+    "reward_per_ad": 0.3,
+    "ads_required_for_channel": 10,
+    "daily_ad_limit": 15,
+    "invite_reward": 0.75,
+    "min_withdrawal": 10,
+    "monetag_zone_id": "11679016",
+    "monetag_direct_link": "",
+    "monetag_script_url": "//libtl.com/sdk.js",
+    "monetag_custom_code": "show_11679016",
+    "premium_channel_link": "https://t.me/+PayPlusVIPExclusive",
+    "premium_channel_id": "",
+    "admin_username": "paulallen",
+    "auto_approve_vip": true,
+    "bot_token": "",
+    "bot_username": "Pay_Plus_Bot"
+  }
+}

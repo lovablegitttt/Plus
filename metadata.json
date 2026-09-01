@@ -1,0 +1,6 @@
+{
+  "name": "PayPlus - Telegram Bot & Ads Earning",
+  "description": "Telegram Mini App & Bot for watching ads, earning rewards, auto-unlocking private premium channel after 10 ads, with Supabase integration and admin panel for @paulallens.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

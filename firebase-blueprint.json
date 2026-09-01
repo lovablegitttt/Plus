@@ -1,0 +1,180 @@
+{
+  "entities": {
+    "users": {
+      "title": "User",
+      "description": "Telegram user profiles with earnings, ads watched, referral info, and VIP approval state",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Telegram user ID (e.g. 1979711369)"
+        },
+        "username": {
+          "type": "string",
+          "description": "Telegram username handle"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "First name of the user"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Last name of the user"
+        },
+        "avatar_url": {
+          "type": "string",
+          "description": "User avatar profile image URL"
+        },
+        "balance": {
+          "type": "number",
+          "description": "Current withdrawable balance in USD"
+        },
+        "total_earned": {
+          "type": "number",
+          "description": "Lifetime total earnings in USD"
+        },
+        "ads_watched": {
+          "type": "number",
+          "description": "Total count of ads watched"
+        },
+        "ads_watched_today": {
+          "type": "number",
+          "description": "Count of ads watched today"
+        },
+        "last_ad_date": {
+          "type": "string",
+          "description": "Date of the last watched ad (YYYY-MM-DD)"
+        },
+        "channel_unlocked": {
+          "type": "boolean",
+          "description": "Whether VIP Private Channel is unlocked (after 10 ads)"
+        },
+        "channel_approved": {
+          "type": "boolean",
+          "description": "Whether user is approved by bot/admin for VIP channel"
+        },
+        "channel_joined": {
+          "type": "boolean",
+          "description": "Whether user has joined the Telegram VIP channel"
+        },
+        "channel_unlocked_at": {
+          "type": "string",
+          "description": "ISO timestamp when VIP was unlocked"
+        },
+        "invited_by": {
+          "type": "string",
+          "description": "Telegram user ID of the inviter"
+        },
+        "friends_invited": {
+          "type": "number",
+          "description": "Number of friends referred"
+        },
+        "earned_from_invites": {
+          "type": "number",
+          "description": "Total USD earnings from referral rewards"
+        },
+        "tasks_completed": {
+          "type": "object",
+          "description": "Map of task IDs completed by this user"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "ISO timestamp of account creation"
+        },
+        "is_admin": {
+          "type": "boolean",
+          "description": "Whether user is an administrator (@paulallens)"
+        }
+      },
+      "required": ["id", "username", "balance", "ads_watched"]
+    },
+    "withdrawals": {
+      "title": "Withdrawal",
+      "description": "Withdrawal requests submitted by users",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique withdrawal request ID"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "Telegram user ID who requested the withdrawal"
+        },
+        "username": {
+          "type": "string",
+          "description": "Telegram username of the user"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Withdrawal amount in USD"
+        },
+        "method": {
+          "type": "string",
+          "description": "Payment method (USDT TRC20, PayPal, Mobile Top-Up)"
+        },
+        "wallet_address": {
+          "type": "string",
+          "description": "Crypto wallet address or account number"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status: pending, approved, paid, or rejected"
+        },
+        "note": {
+          "type": "string",
+          "description": "Admin note or transaction hash"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "ISO timestamp of creation"
+        }
+      },
+      "required": ["id", "user_id", "amount", "method", "wallet_address", "status"]
+    },
+    "app_settings": {
+      "title": "App Setting",
+      "description": "System settings and Monetag ad network configuration",
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Configuration key (e.g. main_config)"
+        },
+        "value": {
+          "type": "object",
+          "description": "Configuration values and parameters"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "ISO timestamp of last update"
+        }
+      },
+      "required": ["key", "value"]
+    },
+    "ads_history": {
+      "title": "Ad History Log",
+      "description": "Individual ad impressions and reward logs",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Log record ID"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "Telegram user ID"
+        },
+        "reward": {
+          "type": "number",
+          "description": "Reward earned in USD"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "ISO timestamp"
+        }
+      },
+      "required": ["user_id", "reward"]
+    }
+  }
+}
